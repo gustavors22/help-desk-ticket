@@ -26,7 +26,7 @@ class HelpTicketController extends Controller
     public function store(Request $request)
     {
         $data = $this->ticketService->saveTicket($request->all());
-        return redirect()->route('ticket.show', $data['ticket_id']); 
+        return redirect()->route('home'); 
     }
 
     public function showTicketByCode($ticket_code)

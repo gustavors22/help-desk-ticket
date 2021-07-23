@@ -22,7 +22,7 @@ class SuportController extends Controller
     public function show($id)
     {
         $ticket = $this->supportService->getTicketById($id);
-        return view('helpTicket', compact('ticket'));
+        return view('ticketView', compact('ticket'));
     }
 
     public function update(Request $request, $id)
@@ -30,16 +30,17 @@ class SuportController extends Controller
         $data = [
             'priority' => $request->priority , 
             'solution_date' => $request->solution_date,
-            'solution' => $request->solution
+            'solution' => $request->solution,
+            'status' => $request->status
         ];
 
         $this->supportService->updateTicket($data, $id);
-        return redirect()->route('support.index');
+        return redirect()->route('home');
     }   
 
     public function destroy($id)
     {
         $this->supportService->deleteTicket($id);
-        return redirect()->route('support.index');
+        return redirect()->route('home');
     }
 }

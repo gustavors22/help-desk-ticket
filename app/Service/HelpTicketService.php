@@ -17,6 +17,11 @@ class HelpTicketService
         return $this->ticketRepository->generateTicketCode();
     }
 
+    public function getAlltickets()
+    {
+        return $this->getAlltickets();
+    }
+
     public function saveTicket($ticketData)
     {
         $ticketData['ticket_id'] = $this->generateTicketId();
