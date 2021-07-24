@@ -66,8 +66,8 @@
 @section('js')
     <script>
         if('{{auth()->user()->type}}' != 'support'){
-            const deleteBtn = document.querySelectorAll('#delete')[0]
-            deleteBtn.hidden = true;
+            const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
+            closeTicketBtn.map(button => button.hidden = true);
         }
     </script>
 @stop
