@@ -33,6 +33,12 @@ class TicketRepository
         return $this->ticketModelObj->where('id', $id)->update($data);
     }
 
+    public function updateTicketByEmail($data, $email)
+    {
+        return $this->ticketModelObj->where('email', $email)->update($data);
+    }
+
+
     public function closeTicket($id)
     {
         $data  = [

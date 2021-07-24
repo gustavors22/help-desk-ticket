@@ -45,9 +45,22 @@ class UserController extends Controller
         return $userCreated ? redirect()->route('help.home', $userData) : redirect()->back();
     }
 
-    public function getUser($data)
+    public function userProfile()
     {
-        return $this->userObj->getUser($data);
+        $userData = $this->getUser(auth()->user()->id);
+        return view('profile', compact('userData'));
+    }
+
+    public function userUpdate(Request $request, $id)
+    {
+        $data = ['name' => $request->name, 'email' => $request->email];
+        $userUpdated = $this->userObj->updateUser($data, $id);
+        return redirect()->back();
+    }
+
+    public function getUser($id)
+    {
+        return $this->userObj->getUser($id);
     }
 }
 

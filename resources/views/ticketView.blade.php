@@ -7,7 +7,7 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputName4">Nome</label>
-        <input type="email" class="form-control" id="inputName4" value="{{$ticket->name}}" disabled>
+        <input type="name" class="form-control" id="inputName4" value="{{$ticket->name}}" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="inputEmail4">Email</label>
@@ -60,7 +60,7 @@
     <div class="form-row" id="support-data">
       <div class="form-group col-md-4">
           <label for="inputName4">Node do Suporte</label>
-          <input type="email" class="form-control" id="inputName4" value="{{$ticket->support_name}}" disabled>
+          <input type="name" class="form-control" id="inputName4" value="{{$ticket->support_name}}" disabled>
         </div>
         <div class="form-group col-md-4">
           <label for="inputEmail4">Email do Suporte</label>

@@ -29,6 +29,11 @@ class HelpTicketService
         return $ticketData;
     }
 
+    public function updateTicketByEmail($data, $email)
+    {
+        return $this->ticketRepository->updateTicketByEmail($data, $email);
+    }
+
     public function getTicketById($id)
     {
         return $this->ticketRepository->getTicketById($id);
