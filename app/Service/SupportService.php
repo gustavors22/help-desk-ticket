@@ -22,6 +22,11 @@ class SupportService
         return $this->ticketRepository->getTicketById($id);
     }
 
+    public function closeTicket($id)
+    {
+        return $this->ticketRepository->closeTicket($id);
+    }
+
     public function updateTicket($data, $id)
     {
         return $this->ticketRepository->updateTicket($data, $id);

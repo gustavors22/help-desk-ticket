@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 use App\Models\Models\ModelHelpTicket;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class TicketRepository
 {
@@ -29,6 +30,16 @@ class TicketRepository
 
     public function updateTicket($data, $id)
     {
+        return $this->ticketModelObj->where('id', $id)->update($data);
+    }
+
+    public function closeTicket($id)
+    {
+        $data  = [
+            'status' => 'resolvido',
+            'support_name' => auth()->user()->name,
+            'support_email' => auth()->user()->email
+        ];
         return $this->ticketModelObj->where('id', $id)->update($data);
     }
 

@@ -3,12 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Tickets de Suport</h1>
+    <h1 class="text-center">Tickets de Suport</h1>
 @stop
 
 @section('content')
-<div class="col-11 table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-striped table-bordered bg-white" style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);">
+<div class="col-13 table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-striped table-bordered bg-white">
         <thead class="thead-white">
             <tr>
                 <th scope="col">Código</th>
@@ -35,11 +35,11 @@
                 <td>{{$ticket->status}}</td>
                 <td>
                     <form action="{{route('support.show', [$ticket->id])}}" method="get" class="btn btn-primary btn-sm">
-                        <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
                     </form>
-                    <form action="" method="post" class="btn btn-danger btn-sm" id="delete">
+                    <form action="{{route('support.closeticket', [$ticket->id])}}" method="post" class="btn btn-success btn-sm" id="close-ticket">
                         @csrf()
-                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
                     </form>
                 </td>
             </tr>

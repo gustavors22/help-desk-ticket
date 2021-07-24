@@ -19,7 +19,7 @@
   </div>
   <div class="form-group col-md-6">
     <label for="inputMessage">Solução</label>
-    <textarea type="textArea" class="form-control" id="sup" cols="10" rows="10">{{!$ticket->solution ? "não definido" : $ticket->solution}}</textarea>
+    <textarea type="textArea" class="form-control" id="sup" cols="10" rows="10" name="solution">{{!$ticket->solution ? "não definido" : $ticket->solution}}</textarea>
   </div>
   <div class="form-row">
     <div class="form-group">

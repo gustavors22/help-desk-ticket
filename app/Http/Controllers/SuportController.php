@@ -34,9 +34,21 @@ class SuportController extends Controller
             'status' => $request->status
         ];
 
+        if($data['status'] == 'resolvido')
+        {
+            $data['support_name'] = auth()->user()->name;
+            $data['support_email'] = auth()->user()->email;
+        }
+
         $this->supportService->updateTicket($data, $id);
         return redirect()->route('home');
-    }   
+    }
+    
+    public function closeTicket($id)
+    {
+        $this->supportService->closeTicket($id);
+        return redirect()->route('home');
+    }
 
     public function destroy($id)
     {

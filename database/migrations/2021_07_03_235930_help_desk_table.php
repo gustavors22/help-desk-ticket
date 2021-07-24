@@ -18,6 +18,8 @@ class HelpDeskTable extends Migration
             $table->string('priority');
             $table->longText("solution");
             $table->string('status');
+            $table->string('support_name');
+            $table->string('support_name');
             $table->dateTime('solution_date');
             $table->timestamps();
         });
