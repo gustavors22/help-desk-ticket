@@ -17,8 +17,13 @@ class UsersRepository
         return $this->userModelObj::create($data);
     }
 
-    public function getUser($data)
+    public function getUser($id)
     {
-        return $this->userModelObj->where($data)->first();
+        return $this->userModelObj->where('id', $id)->first();
+    }
+
+    public function updateUser($data, $id)
+    {
+        return $this->userModelObj->where('id', $id)->update($data);
     }
 }

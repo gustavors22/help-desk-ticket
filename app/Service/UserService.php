@@ -18,9 +18,14 @@ class UserService
         return $this->userRepository->createUser($data);
     }
 
-    public function getUser($data)
+    public function getUser($id)
     {
-        return $this->userRepository->getUser($data);
+        return $this->userRepository->getUser($id);
+    }
+
+    public function updateUser($data, $id)
+    {
+        return $this->userRepository->updateUser($data, $id);
     }
     
 }
