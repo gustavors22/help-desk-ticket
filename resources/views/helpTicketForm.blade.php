@@ -26,13 +26,13 @@
         </div>
 
         <div class="form-group  m-2">
-            <button type="submit" class="btn btn-primary float-right">
+            <button type="submit" class="btn btn-primary">
                 <i class="fa fa-paper-plane"></i>
                 Enviar
             </button>
 
             <a href="{{ route('home') }}">
-                <input type="button" class="btn btn-warning float-right" value="Voltar">
+                <input type="button" class="btn btn-warning" value="Voltar">
             </a>
         </div>
     </form>

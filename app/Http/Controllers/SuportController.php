@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Service\SolvedTicketService;
 use Illuminate\Http\Request;
 use App\Service\SupportService;
 
 class SuportController extends Controller
 {
     private $supportService;
+    private $solvedTickets;
 
     function __construct()
     {
         $this->supportService = new SupportService;
+        $this->solvedTickets = new SolvedTicketService;
     }
 
     public function index()
@@ -42,6 +46,16 @@ class SuportController extends Controller
 
         $this->supportService->updateTicket($data, $id);
         return redirect()->route('home');
+    }
+
+    public function getClosedTickets()
+    {
+        if(auth()->user()->type == 'support'){
+            $closedTickets = $this->solvedTickets->getTicketBySupportEmail(auth()->user()->email);
+            return view('closedTicketsBySupport', compact('closedTickets'));
+        }
+
+        return redirect()->back()->withErrors('não autroizado');
     }
     
     public function closeTicket($id)

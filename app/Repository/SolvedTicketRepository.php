@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Models\Models\ModelSolvedTicket;
+use App\Models\Models\ModelHelpTicket;
 
 class SolvedTicketRepository
 {
@@ -10,7 +10,7 @@ class SolvedTicketRepository
 
     function __construct()
     {
-        $this->solvedTicketObj = new ModelSolvedTicket;
+        $this->solvedTicketObj = new ModelHelpTicket();
     }
     
     public function saveTicket($ticket)
@@ -25,6 +25,6 @@ class SolvedTicketRepository
 
     public function getTicketBySupportEmail($email)
     {
-        return $this->solvedTicketObj->where('support_person_email', $email)->all();
+        return $this->solvedTicketObj->where('support_email', $email)->get();
     }
 }

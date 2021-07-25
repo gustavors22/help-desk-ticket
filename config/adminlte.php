@@ -253,25 +253,42 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],*/
-        ['header' => 'account_settings'],
+        //['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'profile/',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'text'       => 'Configurações de Conta',
+            'icon'       => 'fas fa-fw fa-user',
+            'submenu'    => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'profile',
+                    'url'  => 'profile/',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
+                [
+                    'text' => 'change_password',
+                    'url'  => 'admin/settings',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ],
+        ],
+
+        [
+            'text'       => 'gerenciar tickets',
+            'icon_color' => 'green',
+            'submenu'    => [
+                
+                [
+                    'text'       => 'Criar Ticket',
+                    'icon_color' => 'red',
+                    'url'        => 'help/newticket',
+                ],
+   
+                [
+                    'text'       => 'Seus Tickets Fechados',
+                    'icon_color' => 'purple',
+                    'url'        => 'support/closedtickets',
+                ],
+            
+                /*
                 [
                     'text'    => 'level_one',
                     'url'     => '#',
@@ -299,16 +316,11 @@ return [
                 [
                     'text' => 'level_one',
                     'url'  => '#',
-                ],
-            ],
+                ],*/
+            ]
         ],
-        ['header' => 'labels'],
+        /*['header' => 'labels'],
         [
-            'text'       => 'Criar Ticket',
-            'icon_color' => 'red',
-            'url'        => 'help/newticket',
-        ],
-       /* [
             'text'       => 'warning',
             'icon_color' => 'yellow',
             'url'        => '#',

@@ -1,17 +1,9 @@
 @extends('adminlte::page')
-
 @section('title', 'Dashboard')
-
 @section('content_header')
-    <h1 class="text-center">Tickets de Suport</h1>
+    <h1 class="text-center">Tickets Fechados</h1>
 @stop
-
 @section('content')
-@if($errors->any())
-    <div class="alert alert-danger mt-2" role="alert">
-            Você não tem autorização para acessar a area de tickets fechados!!
-    </div>
-@endif
 <div class="col-13 table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-striped table-bordered bg-white">
         <thead class="thead-white">
@@ -28,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($tickets as $ticket)
+            @foreach($closedTickets as $ticket)
             <tr>
                 <th scope="row">{{$ticket->id}}</th>
                 <td>{{$ticket->name}}</td>
@@ -41,10 +33,6 @@
                 <td>
                     <form action="{{route('support.show', [$ticket->id])}}" method="get" class="btn btn-primary btn-sm">
                         <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
-                    </form>
-                    <form action="{{route('support.closeticket', [$ticket->id])}}" method="post" class="btn btn-success btn-sm" id="close-ticket">
-                        @csrf()
-                        <button class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
                     </form>
                 </td>
             </tr>
