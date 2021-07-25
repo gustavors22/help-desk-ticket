@@ -7,22 +7,19 @@ use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/support/ticket/{id}',  [SuportController::class, 'show'])->name('support.show');
-Route::post('/support/ticket/{id}', [SuportController::class, 'update'])->name('support.update');
-Route::post('/support/closeticket/{id}', [SuportController::class, 'closeTicket'])->name('support.closeticket');
-Route::get('/support/closedtickets/', [SuportController::class, 'getClosedTickets'])->name('support.yourclosedtickets');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/support/ticket/{id}',  [SuportController::class, 'show'])->name('support.show')->middleware('auth');
+Route::post('/support/ticket/{id}', [SuportController::class, 'update'])->name('support.update')->middleware('auth');
+Route::post('/support/closeticket/{id}', [SuportController::class, 'closeTicket'])->name('support.closeticket')->middleware('auth');
+Route::get('/support/closedtickets/', [SuportController::class, 'getClosedTicketsBySupport'])->name('support.yourclosedtickets')->middleware('auth');
+Route::get('/support/closedtickets/all', [SuportController::class, 'getAllClosedTickets'])->name('support.allclosedtickets')->middleware('auth');
 
-Route::get('/help/newticket', [HelpTicketController::class, 'create'])->name('help.create');
-Route::post('/help/newticket',  [HelpTicketController::class, 'store'])->name('help.store');
+Route::get('/help/newticket', [HelpTicketController::class, 'create'])->name('help.create')->middleware('auth');
+Route::post('/help/newticket',  [HelpTicketController::class, 'store'])->name('help.store')->middleware('auth');
 
-Route::get('profile/', [UserController::class, 'userProfile'])->name('profile');
-Route::post('profile/update/{id}', [UserController::class, 'userUpdate'])->name('profile.update');
+Route::get('profile/', [UserController::class, 'userProfile'])->name('profile')->middleware('auth');
+Route::post('profile/update/{id}', [UserController::class, 'userUpdate'])->name('profile.update')->middleware('auth');
 Auth::routes();
 

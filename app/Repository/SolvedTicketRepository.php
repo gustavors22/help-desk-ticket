@@ -18,6 +18,11 @@ class SolvedTicketRepository
         return $this->solvedTicketObj->create($ticket);
     }
 
+    public function getAllClosedTickets()
+    {
+        return $this->solvedTicketObj->where('status', 'resolvido')->get();
+    }
+
     public function getTicketByCode($ticketCode)
     {
         return $this->solvedTicketObj->where('ticket_code', $ticketCode)->first();

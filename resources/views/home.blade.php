@@ -9,7 +9,7 @@
 @section('content')
 @if($errors->any())
     <div class="alert alert-danger mt-2" role="alert">
-            Você não tem autorização para acessar a area de tickets fechados!!
+          <strong>Não autorizado</strong>
     </div>
 @endif
 <div class="col-13 table-wrapper-scroll-y my-custom-scrollbar">
@@ -70,9 +70,16 @@
 
 @section('js')
     <script>
+        function disableCloseTicketBtn()
+        {
+            const closeTicketBtn = document.querySelectorAll('#close-ticket')[0];
+            closeTicketBtn.map(button => button.disabled = '{{$ticket->status}}' == 'resolvido' ? true : false);
+        }
+
         if('{{auth()->user()->type}}' != 'support'){
-            const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
             closeTicketBtn.map(button => button.hidden = true);
         }
+
+        
     </script>
 @stop

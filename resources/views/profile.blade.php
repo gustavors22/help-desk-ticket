@@ -1,6 +1,11 @@
 @extends('adminlte::page')
 @section('title', 'Perfil')
 @section('content')
+@if($errors->any())
+    <div class="alert alert-danger mt-2" role="alert">
+          <strong>Não autorizado</strong>
+    </div>
+@endif
 <div class="col-md-9 pt-4 m-auto">
   <form class="" action="{{route('profile.update', [$userData->id])}}" method="post">
     @csrf()

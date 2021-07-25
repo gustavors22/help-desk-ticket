@@ -48,14 +48,24 @@ class SuportController extends Controller
         return redirect()->route('home');
     }
 
-    public function getClosedTickets()
+    public function getAllClosedTickets()
+    {
+        if(auth()->user()->type == 'support'){
+            $closedTickets = $this->solvedTickets->getAllClosedTickets();
+            return view('closedTicketsBySupport', compact('closedTickets'));
+        }
+
+        return redirect()->back()->withErrors('impossivel de acessar');
+    }
+
+    public function getClosedTicketsBySupport()
     {
         if(auth()->user()->type == 'support'){
             $closedTickets = $this->solvedTickets->getTicketBySupportEmail(auth()->user()->email);
             return view('closedTicketsBySupport', compact('closedTickets'));
         }
 
-        return redirect()->back()->withErrors('não autroizado');
+        return redirect()->back()->withErrors('impossilvel de acessar');
     }
     
     public function closeTicket($id)

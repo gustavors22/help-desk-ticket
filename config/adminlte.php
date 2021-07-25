@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -280,6 +280,12 @@ return [
                     'text'       => 'Criar Ticket',
                     'icon_color' => 'red',
                     'url'        => 'help/newticket',
+                ],
+
+                [
+                    'text'       => 'Tickets Fechados',
+                    'icon_color' => 'cyan',
+                    'url'        => '/support/closedtickets/all'
                 ],
    
                 [

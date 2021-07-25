@@ -1,9 +1,14 @@
 @extends('adminlte::page')
 @section('title', 'Dashboard')
 @section('content_header')
-    <h1 class="text-center">Tickets Fechados</h1>
+<h1 class="text-center">Tickets Fechados</h1>
 @stop
 @section('content')
+@if($errors->any())
+    <div class="alert alert-danger mt-2" role="alert">
+          <strong>Não autorizado</strong>
+    </div>
+@endif
 <div class="col-13 table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-striped table-bordered bg-white">
         <thead class="thead-white">
@@ -43,24 +48,25 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    <style>
-        .my-custom-scrollbar {
-            position: relative;
-            height: 500px;
-            overflow: auto;
-        }
-        .table-wrapper-scroll-y {
-            display: block;
-        }
-    </style>
+<link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>
 @stop
 
 @section('js')
-    <script>
-        if('{{auth()->user()->type}}' != 'support'){
-            const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
-            closeTicketBtn.map(button => button.hidden = true);
-        }
-    </script>
+<script>
+    if ('{{auth()->user()->type}}' != 'support') {
+        const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
+        closeTicketBtn.map(button => button.hidden = true);
+    }
+</script>
 @stop

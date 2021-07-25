@@ -1,6 +1,11 @@
 @extends('adminlte::page')
 @section('title', 'Ticket')
 @section('content')
+@if($errors->any())
+    <div class="alert alert-danger mt-2" role="alert">
+          <strong>Não autorizado</strong>
+    </div>
+@endif
 <div class="col-md-9 pt-4 m-auto">
   <form class="" action="{{route('support.update', [$ticket->id])}}" method="post">
     @csrf()

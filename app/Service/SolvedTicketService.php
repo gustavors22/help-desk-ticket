@@ -17,6 +17,12 @@ class SolvedTicketService
         return $this->solvedTicketRepository->saveTicket($ticket);
     }
 
+    
+    public function getAllClosedTickets()
+    {
+        return $this->solvedTicketRepository->getAllClosedTickets();
+    }
+
     public function getTicket($ticketCode)
     {
         return $this->solvedTicketRepository->getTicketByCode($ticketCode);

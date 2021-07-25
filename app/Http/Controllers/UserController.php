@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function userHomePage($user_name, $user_email)
     {
-        $tickets = $this->helpTicketsObj->getUserTickets(['name' => $user_name, 'email' => $user_email]);
+        $tickets = array_reverse($this->helpTicketsObj->getUserTickets(['name' => $user_name, 'email' => $user_email]));
         return view('userHomePage', compact('tickets'));
     }
 
