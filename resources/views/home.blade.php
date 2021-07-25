@@ -70,13 +70,8 @@
 
 @section('js')
     <script>
-        function disableCloseTicketBtn()
-        {
-            const closeTicketBtn = document.querySelectorAll('#close-ticket')[0];
-            closeTicketBtn.map(button => button.disabled = '{{$ticket->status}}' == 'resolvido' ? true : false);
-        }
-
         if('{{auth()->user()->type}}' != 'support'){
+            const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
             closeTicketBtn.map(button => button.hidden = true);
         }
 

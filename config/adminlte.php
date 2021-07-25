@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -261,6 +261,23 @@ return [
                 [
                     'text' => 'profile',
                     'url'  => 'profile/',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'change_password',
+                    'url'  => 'admin/settings',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ],
+        ],
+
+        [
+            'text'       => 'Gerenciar Usuários',
+            'icon'       => 'fas fa-fw fa-user',
+            'submenu'    => [
+                [
+                    'text' => 'Criar Novo Usuário',
+                    'url'  => 'support/createuser',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [

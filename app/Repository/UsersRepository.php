@@ -3,6 +3,7 @@
 namespace App\Repository;
 use App\Models\Models\ModelUser;
 use App\Service\HelpTicketService;
+use Illuminate\Support\Facades\Hash;
 
 class UsersRepository 
 {   
@@ -17,7 +18,11 @@ class UsersRepository
 
     public function createUser($data)
     {
-        return $this->userModelObj::create($data);
+        return $this->userModelObj::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     public function getUser($id)

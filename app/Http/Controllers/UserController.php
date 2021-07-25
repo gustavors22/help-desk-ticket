@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\HelpTicketService;
 use App\Service\UserService;
-use Illuminate\Foundation\Auth\User;
+
 use Illuminate\Http\Request;
 
 
@@ -13,6 +13,7 @@ class UserController extends Controller
 
     private $userObj;
     private $helpTicketsObj;
+    private $createUser;
     
     function __construct()
     {
@@ -32,17 +33,15 @@ class UserController extends Controller
         return view('userTicketView', compact('ticket'));
     }
 
-    public function createUser(Request $request)
+    public function createUserView()
     {
-        $data = [
-            'user_name' => $request->user_name, 
-            'user_email' => $request->user_email,
-            'password' => $request->password
-        ];
+        return view('createUser');
+    }
 
-        $userCreated = $this->userObj->createUser($data);
-        $userData = ['user_name' => $userCreated->user_name, 'user_email' => $userCreated->user_email];
-        return $userCreated ? redirect()->route('help.home', $userData) : redirect()->back();
+    public function userStore(Request $request)
+    {
+        $userData = ['name' => $request->name, 'email' => $request->email, 'password' => $request->password];
+        dd($this->userObj->createUser($userData));
     }
 
     public function userProfile()
