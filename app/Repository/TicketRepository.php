@@ -15,7 +15,7 @@ class TicketRepository
 
     public function getAllTickets()
     {
-        return $this->ticketModelObj->all();
+        return $this->ticketModelObj->all()->sortByDesc('id');
     }
 
     public function getTicketById($id)
