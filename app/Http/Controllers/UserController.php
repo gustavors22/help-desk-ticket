@@ -41,7 +41,8 @@ class UserController extends Controller
     public function userStore(Request $request)
     {
         $userData = ['name' => $request->name, 'email' => $request->email, 'password' => $request->password];
-        dd($this->userObj->createUser($userData));
+        $this->userObj->createUser($userData);
+        return redirect()->back();
     }
 
     public function userProfile()
@@ -50,10 +51,22 @@ class UserController extends Controller
         return view('profile', compact('userData'));
     }
 
+    public function userUpdateAccountTypeView()
+    {
+        
+        return auth()->user()->type != 'admin' ? redirect()->back()->withErrors('não autorizado') : view('updateAccountType');
+    }
+
+    public function userUpdateAccountType(Request $request)
+    {
+        $this->userObj->updateUserAccountType($request->email, $request->type);
+        return redirect()->back();
+    }
+
     public function userUpdate(Request $request, $id)
     {
         $data = ['name' => $request->name, 'email' => $request->email];
-        $userUpdated = $this->userObj->updateUser($data, $id);
+        $this->userObj->updateUser($data, $id);
         return redirect()->back();
     }
 

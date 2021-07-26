@@ -273,23 +273,23 @@ return [
 
         [
             'text'       => 'Gerenciar Usuários',
-            'icon'       => 'fas fa-fw fa-user',
+            'icon_color'       => 'blue',
             'submenu'    => [
                 [
                     'text' => 'Criar Novo Usuário',
                     'url'  => 'support/createuser',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon_color' => 'pink',
                 ],
                 [
-                    'text' => 'change_password',
-                    'url'  => 'admin/settings',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'text' => 'Definir Nivel De Acesso Do Usuário',
+                    'url'  => 'admin/edit/user',
+                    'icon_color' => 'red',
                 ],
             ],
         ],
 
         [
-            'text'       => 'gerenciar tickets',
+            'text'       => 'Area do Suporte',
             'icon_color' => 'green',
             'submenu'    => [
                 

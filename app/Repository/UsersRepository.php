@@ -30,8 +30,19 @@ class UsersRepository
         return $this->userModelObj->where('id', $id)->first();
     }
 
+    public function getUserByEmail($email)
+    {
+        return $this->userModelObj->where('email', $email)->first();
+    }
+
+    public function updateUserAccountType($email, $accountType)
+    {
+        return $this->userModelObj->where('email', $email)->update(['type' => $accountType]);
+    }
+
     public function updateUser($data, $id)
     {
+
         $newUserNameEndEmail = ['name' => $data['name'], 'email' => $data['email']];
         $this->helpTicketService->updateTicketByEmail($newUserNameEndEmail, auth()->user()->email);
         return $this->userModelObj->where('id', $id)->update($data);

@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->type == 'support')
+        if(auth()->user()->type == 'support' || auth()->user()->type == 'admin')
             $tickets = $this->ticketsRepository->getAllTickets();
         else
             $tickets = $this->ticketsRepository->getUserTickets(['name' => auth()->user()->name, 'email' => auth()->user()->email]);

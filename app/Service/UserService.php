@@ -23,6 +23,11 @@ class UserService
         return $this->userRepository->getUser($id);
     }
 
+    public function updateUserAccountType($email, $accountType)
+    {
+        return $this->userRepository->updateUserAccountType($email, $accountType);
+    }
+
     public function updateUser($data, $id)
     {
         return $this->userRepository->updateUser($data, $id);
