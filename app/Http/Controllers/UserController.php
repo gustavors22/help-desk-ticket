@@ -13,7 +13,6 @@ class UserController extends Controller
 
     private $userObj;
     private $helpTicketsObj;
-    private $createUser;
     
     function __construct()
     {
@@ -68,6 +67,17 @@ class UserController extends Controller
         $data = ['name' => $request->name, 'email' => $request->email];
         $this->userObj->updateUser($data, $id);
         return redirect()->back();
+    }
+
+    public function updatePasswordView()
+    {
+        return view('updatePassword');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $this->userObj->updatePassword($request->new_password, $request->new_password_confirm);
+        return redirect()->route('home');
     }
 
     public function getUser($id)

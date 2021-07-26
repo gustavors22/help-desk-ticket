@@ -32,5 +32,10 @@ class UserService
     {
         return $this->userRepository->updateUser($data, $id);
     }
+
+    public function updatePassword($newPassword, $newPasswordConfirm)
+    {
+        return $this->userRepository->updatePassword($newPassword, $newPasswordConfirm);
+    }
     
 }

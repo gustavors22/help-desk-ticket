@@ -42,9 +42,13 @@ class UsersRepository
 
     public function updateUser($data, $id)
     {
-
         $newUserNameEndEmail = ['name' => $data['name'], 'email' => $data['email']];
         $this->helpTicketService->updateTicketByEmail($newUserNameEndEmail, auth()->user()->email);
         return $this->userModelObj->where('id', $id)->update($data);
+    }
+
+    public function updatePassword($newPassword, $newPasswordConfirm)
+    {
+        return $newPassword == $newPasswordConfirm ? $this->userModelObj->where('id', auth()->user()->id)->update(['password' => Hash::make($newPassword)]) : false;
     }
 }

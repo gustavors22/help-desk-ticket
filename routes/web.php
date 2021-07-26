@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
 Route::get('/support/ticket/{id}',  [SuportController::class, 'show'])->name('support.show')->middleware('auth');
 Route::post('/support/ticket/{id}', [SuportController::class, 'update'])->name('support.update')->middleware('auth');
 Route::post('/support/closeticket/{id}', [SuportController::class, 'closeTicket'])->name('support.closeticket')->middleware('auth');
@@ -26,6 +27,8 @@ Route::get('/help/newticket', [HelpTicketController::class, 'create'])->name('he
 Route::post('/help/newticket',  [HelpTicketController::class, 'store'])->name('help.store')->middleware('auth');
 
 Route::get('profile/', [UserController::class, 'userProfile'])->name('profile')->middleware('auth');
-Route::post('profile/update/{id}', [UserController::class, 'userUpdate'])->name('profile.update')->middleware('auth');
+Route::post('/profile/update/{id}', [UserController::class, 'userUpdate'])->name('profile.update')->middleware('auth');
+Route::get('/profile/update/password/', [UserController::class, 'updatePasswordView'])->name('profile.updatepassview')->middleware('auth');
+Route::post('/profile/update/password/post', [UserController::class, 'updatePassword'])->name('profile.updatepass')->middleware('auth');
 Auth::routes();
 
