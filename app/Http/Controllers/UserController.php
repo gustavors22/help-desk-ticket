@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function createUserView()
     {
-        return view('createUser');
+        return auth()->user()->type == 'user' ? redirect()->back()->withErrors('não autorizado') : view('createUser');
     }
 
     public function userStore(Request $request)
