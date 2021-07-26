@@ -3,7 +3,7 @@
 #### Cloning the project
 ```shell
 git clone -b adminlte https://github.com/gustavors22/help-desk-ticket.git 
-cd help-desk-ticket
+cd help-desk-ticket-adminlte
 ```
 #### Running the project
 ```shell
