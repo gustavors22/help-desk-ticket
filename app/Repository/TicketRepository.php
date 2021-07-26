@@ -7,17 +7,22 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class TicketRepository
 {
     protected $ticketModelObj;
-
+    
     function __construct()
     {
         $this->ticketModelObj = new ModelHelpTicket;
     }
-
+    
     public function getAllTickets()
     {
         return $this->ticketModelObj->all()->sortByDesc('id');
     }
-
+    
+    public function getUserTickets($credentials)
+    {
+        return $this->ticketModelObj->where($credentials)->get()->sortByDesc('id');
+    }
+    
     public function getTicketById($id)
     {
         return $this->ticketModelObj->find($id);
@@ -64,9 +69,4 @@ class TicketRepository
         return $this->ticketModelObj->where('ticket_id', $ticketCode)->first();
     }
 
-    public function getUserTickets($credentials)
-    {
-        return $this->ticketModelObj->where($credentials)->get();
-    }
-    
 }

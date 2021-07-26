@@ -298,7 +298,12 @@ return [
                     'icon_color' => 'red',
                     'url'        => 'help/newticket',
                 ],
-
+                
+                [
+                    'text'       => 'Tickets Abertos',
+                    'icon_color' => 'yellow',
+                    'url'        => 'home',
+                ],
                 [
                     'text'       => 'Tickets Fechados',
                     'icon_color' => 'cyan',

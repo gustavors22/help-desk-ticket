@@ -20,7 +20,7 @@ class SolvedTicketRepository
 
     public function getAllClosedTickets()
     {
-        return $this->solvedTicketObj->where('status', 'resolvido')->get();
+        return $this->solvedTicketObj->where('status', 'resolvido')->get()->sortByDesc('id');
     }
 
     public function getTicketByCode($ticketCode)
@@ -30,6 +30,6 @@ class SolvedTicketRepository
 
     public function getTicketBySupportEmail($email)
     {
-        return $this->solvedTicketObj->where('support_email', $email)->get();
+        return $this->solvedTicketObj->where('support_email', $email)->get()->sortByDesc('id');
     }
 }
