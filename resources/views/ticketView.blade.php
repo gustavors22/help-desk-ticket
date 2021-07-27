@@ -64,7 +64,7 @@
     
     <div class="form-row" id="support-data">
       <div class="form-group col-md-4">
-          <label for="inputName4">Node do Suporte</label>
+          <label for="inputName4">Nome do Suporte</label>
           <input type="name" class="form-control" id="inputName4" value="{{$ticket->support_name}}" disabled>
         </div>
         <div class="form-group col-md-4">

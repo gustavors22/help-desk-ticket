@@ -52,7 +52,6 @@ class UserController extends Controller
 
     public function userUpdateAccountTypeView()
     {
-        
         return auth()->user()->type != 'admin' ? redirect()->back()->withErrors('não autorizado') : view('updateAccountType');
     }
 

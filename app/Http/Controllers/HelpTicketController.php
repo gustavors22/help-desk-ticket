@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Models\ModelHelpTicket;
 use App\Service\HelpTicketService;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class HelpTicketController extends Controller
 
     public function store(Request $request)
     {
-        $data = $this->ticketService->saveTicket($request->all());
+        $this->ticketService->saveTicket($request->all());
         return redirect()->route('home'); 
     }
 

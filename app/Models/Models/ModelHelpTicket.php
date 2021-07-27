@@ -17,6 +17,8 @@ class ModelHelpTicket extends Model
         "user_message",
         "priority",
         "solution",
+        'support_name',
+        'support_email',
         "solution_date"
     ];
 

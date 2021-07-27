@@ -8,9 +8,9 @@ class TicketRepository
 {
     protected $ticketModelObj;
     
-    function __construct()
+    function __construct(ModelHelpTicket $a)
     {
-        $this->ticketModelObj = new ModelHelpTicket;
+        $this->ticketModelObj = $a;
     }
     
     public function getAllTickets()
