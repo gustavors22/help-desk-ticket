@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repository\TicketRepository;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class HomeController extends Controller
         if(auth()->user()->type == 'support' || auth()->user()->type == 'admin')
             $tickets = $this->ticketsRepository->getAllTickets();
         else
-            $tickets = $this->ticketsRepository->getUserTickets(['name' => auth()->user()->name, 'email' => auth()->user()->email]);
+            $tickets = $this->ticketsRepository->getUserTickets(auth()->user()->id);
             
         return view('home', compact('tickets'));
     }

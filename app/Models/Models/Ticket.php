@@ -2,25 +2,30 @@
 
 namespace App\Models\Models;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ModelHelpTicket extends Model
+class Ticket extends Model
 {
     protected $table = 'help_desk_tickets';
     protected $fillable = [
         "ticket_id",
         "name",
         "email",
+        "user_id",
         "title",
         "user_message",
         "priority",
         "solution",
-        'support_name',
-        'support_email',
         "solution_date"
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 
     public function getSolutionDateAttribute($value)
     {

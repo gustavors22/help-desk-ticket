@@ -27,7 +27,14 @@ class HelpTicketController extends Controller
 
     public function store(Request $request)
     {
-        $this->ticketService->saveTicket($request->all());
+        $ticketData = [
+            'user_id'       => auth()->user()->id,
+            'title'         => $request->title,
+            'user_message'  => $request->user_message
+        ];
+
+
+        $this->ticketService->saveTicket($ticketData);
         return redirect()->route('home'); 
     }
 

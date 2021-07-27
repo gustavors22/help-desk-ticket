@@ -4,7 +4,7 @@ namespace App\Models\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ModelSolvedTicket extends Model
+class SolvedTicket extends Model
 {  
     protected $table = 'solved_tickets';
     protected $fillable = [

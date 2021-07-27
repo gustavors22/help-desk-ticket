@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-use App\Models\Models\ModelUser;
+use App\Models\User;
 use App\Service\HelpTicketService;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,7 +12,7 @@ class UsersRepository
 
     function __construct()
     {
-        $this->userModelObj = new ModelUser;
+        $this->userModelObj = new User();
         $this->helpTicketService = new HelpTicketService;
     }
 

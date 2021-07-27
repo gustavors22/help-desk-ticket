@@ -31,8 +31,8 @@
             @foreach($tickets as $ticket)
             <tr>
                 <th scope="row">{{$ticket->id}}</th>
-                <td>{{$ticket->name}}</td>
-                <td>{{$ticket->email}}</td>
+                <td>{{$tickets['user']->name}}</td>
+                <td>{{$tickets['user']->email}}</td>
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->created_at}}</td>
                 <td>{{$ticket->solution_date}}</td>

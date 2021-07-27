@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Repository;
-use App\Models\Models\ModelHelpTicket;
+use App\Models\Models\Ticket;
+use App\Models\User;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class TicketRepository
 {
     protected $ticketModelObj;
     
-    function __construct(ModelHelpTicket $a)
+    function __construct()
     {
-        $this->ticketModelObj = $a;
+        $this->ticketModelObj = new Ticket;
     }
     
     public function getAllTickets()
@@ -18,10 +19,15 @@ class TicketRepository
         return $this->ticketModelObj->all()->sortByDesc('id');
     }
     
-    public function getUserTickets($credentials)
+
+    public function getUserTickets($userId)
     {
-        return $this->ticketModelObj->where($credentials)->get()->sortByDesc('id');
+        $ticketData = $this->ticketModelObj->where(['user_id' => $userId])->get()->sortByDesc('id');
+        $user = User::find($userId);
+        $ticketData['user'] = $user;
+        return $ticketData;
     }
+
     
     public function getTicketById($id)
     {
@@ -30,7 +36,7 @@ class TicketRepository
 
     public function saveTicket($ticketData)
     {
-        return $this->ticketModelObj::create($ticketData);
+        return $this->ticketModelObj->create($ticketData);
     } 
 
     public function updateTicket($data, $id)
@@ -42,7 +48,6 @@ class TicketRepository
     {
         return $this->ticketModelObj->where('email', $email)->update($data);
     }
-
 
     public function closeTicket($id)
     {
