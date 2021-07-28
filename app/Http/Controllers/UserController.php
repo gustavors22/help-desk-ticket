@@ -11,24 +11,24 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    private $userObj;
-    private $helpTicketsObj;
+    private $user;
+    private $ticket;
     
-    function __construct()
+    function __construct(UserService $user, HelpTicketService $ticket)
     {
-        $this->userObj = new UserService;
-        $this->helpTicketsObj = new HelpTicketService;
+        $this->user = $user;
+        $this->ticket = $ticket;
     }
 
     public function userHomePage($user_name, $user_email)
     {
-        $tickets = array_reverse($this->helpTicketsObj->getUserTickets(['name' => $user_name, 'email' => $user_email]));
+        $tickets = array_reverse($this->ticket->getUserTickets(['name' => $user_name, 'email' => $user_email]));
         return view('userHomePage', compact('tickets'));
     }
 
     public function userTicketView($id)
     {
-        $ticket = $this->helpTicketsObj->getTicketById($id);
+        $ticket = $this->ticket->getTicketById($id);
         return view('userTicketView', compact('ticket'));
     }
 
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function userStore(Request $request)
     {
         $userData = ['name' => $request->name, 'email' => $request->email, 'password' => $request->password];
-        $this->userObj->createUser($userData);
+        $this->user->createUser($userData);
         return redirect()->back();
     }
 
@@ -57,14 +57,14 @@ class UserController extends Controller
 
     public function userUpdateAccountType(Request $request)
     {
-        $this->userObj->updateUserAccountType($request->email, $request->type);
+        $this->user->updateUserAccountType($request->email, $request->type);
         return redirect()->back();
     }
 
     public function userUpdate(Request $request, $id)
     {
         $data = ['name' => $request->name, 'email' => $request->email];
-        $this->userObj->updateUser($data, $id);
+        $this->user->updateUser($data, $id);
         return redirect()->back();
     }
 
@@ -75,13 +75,13 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $this->userObj->updatePassword($request->new_password, $request->new_password_confirm);
+        $this->user->updatePassword($request->new_password, $request->new_password_confirm);
         return redirect()->route('home');
     }
 
     public function getUser($id)
     {
-        return $this->userObj->getUser($id);
+        return $this->user->getUser($id);
     }
 }
 

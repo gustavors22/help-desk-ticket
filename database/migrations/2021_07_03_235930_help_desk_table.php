@@ -8,7 +8,7 @@ class HelpDeskTable extends Migration
 {
     public function up()
     {
-        Schema::create('help_desk_tickets', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_id');
             $table->unsignedBigInteger('user_id');

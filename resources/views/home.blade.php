@@ -31,8 +31,8 @@
             @foreach($tickets as $ticket)
             <tr>
                 <th scope="row">{{$ticket->id}}</th>
-                <td>{{$tickets['user']->name}}</td>
-                <td>{{$tickets['user']->email}}</td>
+                <td>{{$ticket->getOwner($ticket->user_id)->name}}</td>
+                <td>{{$ticket->getOwner($ticket->user_id)->email}}</td>
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->created_at}}</td>
                 <td>{{$ticket->solution_date}}</td>
@@ -70,7 +70,7 @@
 
 @section('js')
     <script>
-        if('{{auth()->user()->type}}' != 'support'){
+        if('{{auth()->user()->type}}' == 'user'){
             const closeTicketBtn = [...document.querySelectorAll('#close-ticket')];
             closeTicketBtn.map(button => button.hidden = true);
         }

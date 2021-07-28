@@ -12,11 +12,11 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputName4">Nome</label>
-        <input type="name" class="form-control" id="inputName4" value="{{$ticket->name}}" disabled>
+        <input type="name" class="form-control" id="inputName4" value="{{$ticket->getOwner($ticket->user_id)->name}}" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" value="{{$ticket->email}}" disabled>
+        <input type="email" class="form-control" id="inputEmail4" value="{{$ticket->getOwner($ticket->user_id)->email}}" disabled>
       </div>
     </div>
     <div class="form-row">
@@ -90,7 +90,7 @@
 
 @section('js')
 <script>
-  if ('{{auth()->user()->type}}' != 'support') {
+  if ('{{auth()->user()->type}}' == 'user') {
     const date = document.querySelectorAll('#solution_date');
     const inputs = [...document.querySelectorAll('#sup')];
     inputs.map(input => input.disabled = true);

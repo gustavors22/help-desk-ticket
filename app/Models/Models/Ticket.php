@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $table = 'help_desk_tickets';
     protected $fillable = [
         "ticket_id",
         "name",
@@ -25,6 +24,11 @@ class Ticket extends Model
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function getOwner($user_id)
+    {
+        return User::find($user_id);
     }
 
     public function getSolutionDateAttribute($value)

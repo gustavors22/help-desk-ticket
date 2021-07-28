@@ -19,16 +19,11 @@ class TicketRepository
         return $this->ticketModelObj->all()->sortByDesc('id');
     }
     
-
     public function getUserTickets($userId)
     {
-        $ticketData = $this->ticketModelObj->where(['user_id' => $userId])->get()->sortByDesc('id');
-        $user = User::find($userId);
-        $ticketData['user'] = $user;
-        return $ticketData;
+        return $this->ticketModelObj->where(['user_id' => $userId])->get()->sortByDesc('id');
     }
 
-    
     public function getTicketById($id)
     {
         return $this->ticketModelObj->find($id);
