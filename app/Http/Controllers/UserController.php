@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     private $user;
     private $ticket;
     

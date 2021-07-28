@@ -10,8 +10,10 @@ class Solution extends Migration
     {
         Schema::create('ticket_solutions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('ticket_id');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->unsignedBigInteger('support_id');
+            $table->foreign('support_id')->references('id')->on('users');
             $table->longText("solution");
             $table->timestamps();
         });

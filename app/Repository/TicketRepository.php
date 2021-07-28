@@ -2,46 +2,45 @@
 
 namespace App\Repository;
 use App\Models\Models\Ticket;
-use App\Models\User;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class TicketRepository
 {
-    protected $ticketModelObj;
+    protected $ticket;
     
     function __construct()
     {
-        $this->ticketModelObj = new Ticket;
+        $this->ticket = new Ticket;
     }
     
     public function getAllTickets()
     {
-        return $this->ticketModelObj->all()->sortByDesc('id');
+        return $this->ticket->all()->sortByDesc('id');
     }
     
     public function getUserTickets($userId)
     {
-        return $this->ticketModelObj->where(['user_id' => $userId])->get()->sortByDesc('id');
+        return $this->ticket->where(['user_id' => $userId])->get()->sortByDesc('id');
     }
 
     public function getTicketById($id)
     {
-        return $this->ticketModelObj->find($id);
+        return $this->ticket->find($id);
     }
 
     public function saveTicket($ticketData)
     {
-        return $this->ticketModelObj->create($ticketData);
+        return $this->ticket->create($ticketData);
     } 
 
     public function updateTicket($data, $id)
     {
-        return $this->ticketModelObj->where('id', $id)->update($data);
+        return $this->ticket->where('id', $id)->update($data);
     }
 
     public function updateTicketByEmail($data, $email)
     {
-        return $this->ticketModelObj->where('email', $email)->update($data);
+        return $this->ticket->where('email', $email)->update($data);
     }
 
     public function closeTicket($id)
@@ -51,12 +50,12 @@ class TicketRepository
             'support_name' => auth()->user()->name,
             'support_email' => auth()->user()->email
         ];
-        return $this->ticketModelObj->where('id', $id)->update($data);
+        return $this->ticket->where('id', $id)->update($data);
     }
 
     public function deleteTicket($id)
     {
-        return $this->ticketModelObj->find($id)->delete();
+        return $this->ticket->find($id)->delete();
     }
 
     public function generateTicketCode()
@@ -66,7 +65,7 @@ class TicketRepository
 
     public function getTicketByYourCode($ticketCode)
     {
-        return $this->ticketModelObj->where('ticket_id', $ticketCode)->first();
+        return $this->ticket->where('ticket_id', $ticketCode)->first();
     }
 
 }

@@ -26,7 +26,7 @@
       </div>
       <div class="form-group col-md-4">
         <label for="inputMessage">Solução</label>
-        <textarea type="textArea" class="form-control" id="sup" cols="4" rows="4" name="solution">{{!$ticket->solution ? "não definido" : $ticket->solution}}</textarea>
+        <textarea type="textArea" class="form-control" id="sup" cols="4" rows="4" name="solution">{{!$solution->solution ? "não definido" : $solution->solution}}</textarea>
       </div>
     </div>
 
@@ -65,11 +65,11 @@
     <div class="form-row" id="support-data">
       <div class="form-group col-md-4">
           <label for="inputName4">Nome do Suporte</label>
-          <input type="name" class="form-control" id="inputName4" value="{{$ticket->support_name}}" disabled>
+          <input type="name" class="form-control" id="inputName4" value="{{$solution->getOwner($solution->support_id)->name}}" disabled>
         </div>
         <div class="form-group col-md-4">
           <label for="inputEmail4">Email do Suporte</label>
-          <input type="email" class="form-control" id="inputEmail4" value="{{$ticket->support_email}}" disabled>
+          <input type="email" class="form-control" id="inputEmail4" value="{{$solution->getOwner($solution->support_id)->email}}" disabled>
         </div>
     </div>
 

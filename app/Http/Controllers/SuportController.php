@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\SolutionService;
 use App\Service\SolvedTicketService;
 use Illuminate\Http\Request;
 use App\Service\SupportService;
@@ -9,12 +10,14 @@ use App\Service\SupportService;
 class SuportController extends Controller
 {
     private $supportService;
+    private $solution;
     private $solvedTickets;
 
     function __construct()
     {
         $this->supportService = new SupportService;
         $this->solvedTickets = new SolvedTicketService;
+        $this->solution = new SolutionService;
     }
 
     public function index()
@@ -26,7 +29,9 @@ class SuportController extends Controller
     public function show($id)
     {
         $ticket = $this->supportService->getTicketById($id);
-        return view('ticketView', compact('ticket'));
+        $solution = $this->solution->getByTicketId($id);
+
+        return view('ticketView', compact('ticket', 'solution'));
     }
 
     public function update(Request $request, $id)
@@ -34,14 +39,12 @@ class SuportController extends Controller
         $data = [
             'priority' => $request->priority , 
             'solution_date' => $request->solution_date,
-            'solution' => $request->solution,
             'status' => $request->status
         ];
 
         if($data['status'] == 'resolvido')
         {
-            $data['support_name'] = auth()->user()->name;
-            $data['support_email'] = auth()->user()->email;
+            $this->solution->save(['ticket_id' => $id, 'support_id' => auth()->user()->id, 'solution' => $request->solution]);
         }
 
         $this->supportService->updateTicket($data, $id);

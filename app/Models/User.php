@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Models\Solution;
 use App\Models\Models\Ticket;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,5 +32,10 @@ class User extends Authenticatable
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    public function solution()
+    {
+        return $this->belongsTo(Solution::class);
     }
 }

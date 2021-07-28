@@ -21,7 +21,7 @@ class Ticket extends Model
         "solution_date"
     ];
 
-    public function users()
+    public function user()
     {
         return $this->hasMany(User::class);
     }
