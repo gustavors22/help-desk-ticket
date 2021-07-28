@@ -53,7 +53,7 @@ class SuportController extends Controller
 
     public function getAllClosedTickets()
     {
-        if(auth()->user()->type == 'support'){
+        if(auth()->user()->type != 'user'){
             $closedTickets = $this->solvedTickets->getAllClosedTickets();
             return view('closedTicketsBySupport', compact('closedTickets'));
         }
@@ -63,7 +63,7 @@ class SuportController extends Controller
 
     public function getClosedTicketsBySupport()
     {
-        if(auth()->user()->type == 'support'){
+        if(auth()->user()->type != 'user'){
             $closedTickets = $this->solvedTickets->getTicketBySupportEmail(auth()->user()->email);
             return view('closedTicketsBySupport', compact('closedTickets'));
         }
