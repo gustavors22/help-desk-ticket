@@ -40,11 +40,11 @@
                 <td>{{$ticket->status}}</td>
                 <td>
                     <form action="{{route('support.show', [$ticket->id])}}" method="get" class="btn btn-primary btn-sm">
-                        <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
                     </form>
-                    <form action="{{route('support.closeticket', [$ticket->id])}}" method="post" class="btn btn-success btn-sm" id="close-ticket">
+                    <form action="{{route('support.closeticket', [$ticket->id])}}" method="post" class="btn btn-danger btn-sm" id="close-ticket">
                         @csrf()
-                        <button class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

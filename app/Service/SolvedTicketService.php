@@ -28,9 +28,9 @@ class SolvedTicketService
         return $this->solvedTicketRepository->getTicketByCode($ticketCode);
     }
 
-    public function getTicketBySupportEmail($email)
+    public function getTicketBySupportId($email)
     {
-        return $this->solvedTicketRepository->getTicketBySupportEmail($email);
+        return $this->solvedTicketRepository->getTicketBySupportId($email);
     }
 
 }

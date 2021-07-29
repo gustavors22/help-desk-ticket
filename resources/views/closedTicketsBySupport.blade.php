@@ -28,8 +28,8 @@
             @foreach($closedTickets as $ticket)
             <tr>
                 <th scope="row">{{$ticket->id}}</th>
-                <td>{{$ticket->name}}</td>
-                <td>{{$ticket->email}}</td>
+                <td>{{$ticket->getOwner($ticket->id)->name}}</td>
+                <td>{{$ticket->getOwner($ticket->id)->email}}</td>
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->created_at}}</td>
                 <td>{{$ticket->solution_date}}</td>

@@ -28,8 +28,8 @@ class SolvedTicketRepository
         return $this->solvedTicketObj->where('ticket_code', $ticketCode)->first();
     }
 
-    public function getTicketBySupportEmail($email)
+    public function getTicketBySupportId($id)
     {
-        return $this->solvedTicketObj->where('support_email', $email)->get()->sortByDesc('id');
+        return $this->solvedTicketObj->where('support_id', $id)->get()->sortByDesc('id');
     }
 }

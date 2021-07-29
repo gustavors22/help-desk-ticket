@@ -29,7 +29,7 @@ class SuportController extends Controller
     public function show($id)
     {
         $ticket = $this->supportService->getTicketById($id);
-        $solution = $this->solution->getByTicketId($id);
+        $solution = $this->solution->getByTicketId($id) ?? null;
 
         return view('ticketView', compact('ticket', 'solution'));
     }
@@ -64,7 +64,7 @@ class SuportController extends Controller
     public function getClosedTicketsBySupport()
     {
         if(auth()->user()->type != 'user'){
-            $closedTickets = $this->solvedTickets->getTicketBySupportEmail(auth()->user()->email);
+            $closedTickets = $this->solvedTickets->getTicketBySupportId(auth()->user()->id);
             return view('closedTicketsBySupport', compact('closedTickets'));
         }
 

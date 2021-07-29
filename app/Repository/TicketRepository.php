@@ -2,15 +2,18 @@
 
 namespace App\Repository;
 use App\Models\Models\Ticket;
+use App\Service\SolutionService;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class TicketRepository
 {
-    protected $ticket;
+    private $ticket;
+    private $solution;
     
     function __construct()
     {
         $this->ticket = new Ticket;
+        $this->solution = new SolutionService;
     }
     
     public function getAllTickets()
@@ -47,10 +50,11 @@ class TicketRepository
     {
         $data  = [
             'status' => 'resolvido',
-            'support_name' => auth()->user()->name,
+            'support_id' => auth()->user()->id,
             'support_email' => auth()->user()->email
         ];
-        return $this->ticket->where('id', $id)->update($data);
+        
+        $this->ticket->where('id', $id)->update($data['status']);
     }
 
     public function deleteTicket($id)
