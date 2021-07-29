@@ -20,6 +20,6 @@ class SolutionRepository
 
     public function getByTicketId($ticket_id)
     {
-        return $this->solution->where('ticket_id', $ticket_id)->first();
+        return $this->solution->where('ticket_id', $ticket_id)->orderBy('id', 'desc')->first();
     }
 }
