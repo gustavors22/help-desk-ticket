@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="form-col">
       <button type="submit" class="btn btn-primary form-group" id="sup">Atualizar</button>
       <a href="{{route('home')}}">
         <input type="button" class="btn btn-warning form-group" value="Voltar">

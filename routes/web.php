@@ -20,8 +20,8 @@ Route::get('/support/closedtickets/all', [SuportController::class, 'getAllClosed
 Route::get('/support/createuser', [UserController::class, 'createUserView'])->name('support.createuser')->middleware('auth');
 Route::post('/support/createuser/', [UserController::class, 'userStore'])->name('support.storeuser')->middleware('auth');
 
-Route::get('/admin/edit/user', [UserController::class, 'userUpdateAccountTypeView'])->name('admin.updateuser')->middleware('auth');
-Route::post('/admin/edit/user', [UserController::class, 'userUpdateAccountType'])->name('admin.useraccountup')->middleware('auth');
+Route::get('/admin/edit/users', [UserController::class, 'userUpdateAccountView'])->name('admin.updateuser')->middleware('auth');
+Route::get('/admin/edit/user/{id}', [UserController::class, 'userUpdateAccountForm'])->name('admin.useraccount')->middleware('auth');
 
 Route::get('/help/newticket', [HelpTicketController::class, 'create'])->name('help.create')->middleware('auth');
 Route::post('/help/newticket',  [HelpTicketController::class, 'store'])->name('help.store')->middleware('auth');

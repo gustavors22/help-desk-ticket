@@ -282,7 +282,7 @@ return [
                 ],
                 [
                     'text' => 'Definir Nivel De Acesso Do Usuário',
-                    'url'  => 'admin/edit/user',
+                    'url'  => 'admin/edit/users',
                     'icon_color' => 'red',
                 ],
             ],

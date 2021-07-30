@@ -49,20 +49,24 @@ class UserController extends Controller
         return view('profile', compact('userData'));
     }
 
-    public function userUpdateAccountTypeView()
+    public function userUpdateAccountView()
     {
-        return auth()->user()->type != 'admin' ? redirect()->back()->withErrors('não autorizado') : view('updateAccountType');
+        if(auth()->user()->type != 'admin')
+            return redirect()->back()->withErrors('não autorizado');
+        
+        $users = $this->user->getUsers();
+        return view('updateUserAccount', compact('users'));
     }
 
-    public function userUpdateAccountType(Request $request)
+    public function userUpdateAccountForm($id)
     {
-        $this->user->updateUserAccountType($request->email, $request->type);
-        return redirect()->back();
+        $user = $this->user->getUser($id);
+        return view('userUpdateForm', compact('user'));
     }
 
     public function userUpdate(Request $request, $id)
     {
-        $data = ['name' => $request->name, 'email' => $request->email];
+        $data = ['name' => $request->name, 'email' => $request->email, 'type' => $request->type];
         $this->user->updateUser($data, $id);
         return redirect()->back();
     }
@@ -81,6 +85,11 @@ class UserController extends Controller
     public function getUser($id)
     {
         return $this->user->getUser($id);
+    }
+
+    public function getUsers()
+    {
+        return $this->user->getUsers();
     }
 }
 

@@ -20,11 +20,13 @@
       </div>
     </div>
 
-    <div class="form-row">
-      <button type="submit" class="btn btn-primary form-group" id="sup">Atualizar</button>
-      <a href="{{route('home')}}">
-        <input type="button" class="btn btn-warning form-group" value="Voltar">
-      </a>
+    <div class="form-col">
+      <div class="">
+        <button type="submit" class="btn btn-primary form-group" id="sup">Atualizar</button>
+        <a href="{{route('home')}}">
+          <input type="button" class="btn btn-warning form-group" value="Voltar">
+        </a>
+      </div>
     </div>
   </form>
 </div>
