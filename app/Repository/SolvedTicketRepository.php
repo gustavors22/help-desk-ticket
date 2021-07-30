@@ -2,15 +2,18 @@
 
 namespace App\Repository;
 
+use App\Models\Models\Solution;
 use App\Models\Models\Ticket;
 
 class SolvedTicketRepository
 {
-    protected $solvedTicketObj;
+    private $solvedTicketObj;
+    private $solution;
 
     function __construct()
     {
         $this->solvedTicketObj = new Ticket;
+        $this->solution = new Solution;
     }
     
     public function saveTicket($ticket)
@@ -30,6 +33,7 @@ class SolvedTicketRepository
 
     public function getTicketBySupportId($id)
     {
-        return $this->solvedTicketObj->where('support_id', $id)->get()->sortByDesc('id');
+        $solution = $this->solution->where('support_id', $id)->with('ticket')->get()->sortByDesc('ticket_id');
+        return $solution;
     }
 }

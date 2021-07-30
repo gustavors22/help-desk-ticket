@@ -65,11 +65,11 @@
     <div class="form-row" id="support-data">
       <div class="form-group col-md-4">
           <label for="inputName4">Nome do Suporte</label>
-          <input type="name" class="form-control" id="inputName4" value="{{$solution != null ? $solution->getOwner($solution->support_id)->name : ''}}" disabled>
+          <input type="name" class="form-control" id="inputName4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->name : ''}}" disabled>
         </div>
         <div class="form-group col-md-4">
           <label for="inputEmail4">Email do Suporte</label>
-          <input type="email" class="form-control" id="inputEmail4" value="{{$solution != null ? $solution->getOwner($solution->support_id)->email: ''}}" disabled>
+          <input type="email" class="form-control" id="inputEmail4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->email: ''}}" disabled>
         </div>
     </div>
 

@@ -5,6 +5,7 @@ namespace App\Models\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Solution extends Model
 {  
@@ -20,7 +21,12 @@ class Solution extends Model
         return $this->hasMany(User::class);
     }
 
-    public function getOwner($id)
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
+
+    public function getOwnerSolution($id)
     {
         return User::find($id);
     }

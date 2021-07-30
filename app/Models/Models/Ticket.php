@@ -26,6 +26,11 @@ class Ticket extends Model
         return $this->hasMany(User::class);
     }
 
+    public function solution()
+    {
+        return $this->hasMany(Solution::class);
+    }
+
     public function getOwner($user_id)
     {
         return User::find($user_id);

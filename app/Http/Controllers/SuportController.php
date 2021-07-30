@@ -55,7 +55,7 @@ class SuportController extends Controller
     {
         if(auth()->user()->type != 'user'){
             $closedTickets = $this->solvedTickets->getAllClosedTickets();
-            return view('closedTicketsBySupport', compact('closedTickets'));
+            return view('allClosedTickets', compact('closedTickets'));
         }
 
         return redirect()->back()->withErrors('impossivel de acessar');

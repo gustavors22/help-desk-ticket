@@ -27,16 +27,16 @@
         <tbody>
             @foreach($closedTickets as $ticket)
             <tr>
-                <th scope="row">{{$ticket->ticket->id}}</th>
-                <td>{{$ticket->ticket->getOwner($ticket->ticket->user_id)->name}}</td>
-                <td>{{$ticket->ticket->getOwner($ticket->ticket->user_id)->email}}</td>
-                <td>{{$ticket->ticket->title}}</td>
-                <td>{{$ticket->ticket->created_at}}</td>
-                <td>{{$ticket->ticket->solution_date}}</td>
-                <td>{{$ticket->ticket->priority}}</td>
-                <td>{{$ticket->ticket->status}}</td>
+                <th scope="row">{{$ticket->id}}</th>
+                <td>{{$ticket->getOwner($ticket->user_id)->name}}</td>
+                <td>{{$ticket->getOwner($ticket->user_id)->email}}</td>
+                <td>{{$ticket->title}}</td>
+                <td>{{$ticket->created_at}}</td>
+                <td>{{$ticket->solution_date}}</td>
+                <td>{{$ticket->priority}}</td>
+                <td>{{$ticket->status}}</td>
                 <td>
-                    <form action="{{route('support.show', [$ticket->ticket->id])}}" method="get" class="btn btn-primary btn-sm">
+                    <form action="{{route('support.show', [$ticket->id])}}" method="get" class="btn btn-primary btn-sm">
                         <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
                     </form>
                 </td>
