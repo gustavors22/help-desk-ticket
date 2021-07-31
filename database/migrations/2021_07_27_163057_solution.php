@@ -8,7 +8,7 @@ class Solution extends Migration
 {
     public function up()
     {
-        Schema::create('ticket_solutions', function (Blueprint $table) {
+        Schema::create('solutions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ticket_id');
             $table->foreign('ticket_id')->references('id')->on('tickets');

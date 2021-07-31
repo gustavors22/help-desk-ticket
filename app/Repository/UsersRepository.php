@@ -47,8 +47,7 @@ class UsersRepository
 
     public function updateUser($data, $id)
     {
-        $newUserNameEndEmail = ['name' => $data['name'], 'email' => $data['email']];
-        $this->helpTicketService->updateTicketByEmail($newUserNameEndEmail, auth()->user()->email);
+        $newUserNameEndEmail = ['name' => $data['name'], 'email' => $data['email'], 'type' => $data['type']];
         return $this->user->where('id', $id)->update($data);
     }
 

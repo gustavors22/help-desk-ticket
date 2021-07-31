@@ -24,9 +24,9 @@
         <div class="form-group col-md-4">
             <select name="type" id="type" class="form-control">
                 <option selected>{{$user->type}}</option>
-                <option selected>admin</option>
-                <option selected>support</option>
-                <option selected>users</option>
+                <option>admin</option>
+                <option>support</option>
+                <option>users</option>
             </select>
         </div>
     </div>

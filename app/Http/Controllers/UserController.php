@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function userUpdate(Request $request, $id)
     {
-        $data = ['name' => $request->name, 'email' => $request->email, 'type' => $request->type];
+        $data = ['name' => $request->name, 'email' => $request->email, 'type' => $request->type ?? auth()->user()->type];
         $this->user->updateUser($data, $id);
         return redirect()->back();
     }

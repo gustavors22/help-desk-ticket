@@ -15,10 +15,9 @@ class HelpDeskTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->longText('user_message');
-            $table->string('priority');
-            $table->longText("solution");
-            $table->string('status');
-            $table->dateTime('solution_date');
+            $table->string('priority')->default('Indefenido');
+            $table->string('status')->default('análise');
+            $table->dateTime('solution_date')->default('NULL');
             $table->timestamps();
         });
     }
