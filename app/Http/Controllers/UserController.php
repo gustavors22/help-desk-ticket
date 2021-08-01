@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $userData = ['name' => $request->name, 'email' => $request->email, 'password' => $request->password];
         $this->user->createUser($userData);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Usário criado com sucesso.');
     }
 
     public function userProfile()
@@ -68,7 +68,7 @@ class UserController extends Controller
     {
         $data = ['name' => $request->name, 'email' => $request->email, 'type' => $request->type ?? auth()->user()->type];
         $this->user->updateUser($data, $id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Usuário modificado com sucesso');
     }
 
     public function updatePasswordView()
@@ -79,7 +79,7 @@ class UserController extends Controller
     public function updatePassword(Request $request)
     {
         $this->user->updatePassword($request->new_password, $request->new_password_confirm);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('Senha modificada com sucesso');
     }
 
     public function getUser($id)

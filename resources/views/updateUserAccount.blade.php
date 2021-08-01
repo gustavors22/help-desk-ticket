@@ -6,6 +6,11 @@
   <strong>Não autorizado</strong>
 </div>
 @endif
+@if(Session::has('success'))
+<div class="alert alert-succes mt-2" role="alert">
+  {{Session::get('success')}}
+</div>
+@endif
 <div class="col-md-9 pt-4 m-auto">
   <table class="table table-striped table-bordered bg-white">
     <thead class="thead-white">
