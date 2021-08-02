@@ -1,11 +1,13 @@
 @extends('adminlte::page')
 @section('title', 'Ticket')
 @section('content')
+
 @if($errors->any())
-<div class="alert alert-danger mt-2" role="alert">
-  <strong>Não autorizado</strong>
-</div>
+  <div class="alert alert-danger mt-2" role="alert">
+    <strong>Não autorizado</strong>
+  </div>
 @endif
+
 <div class="col-md-9 pt-4 m-auto">
   <form class="form-wrapper-scroll-y my-custom-scrollbar" action="{{route('support.update', [$ticket[0]->id])}}" method="post" enctype="multipart/form-data">
     @csrf()

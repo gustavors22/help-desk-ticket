@@ -7,9 +7,9 @@
     </div>
 @endif
 @if(Session::has('success'))
-<div class="alert alert-success mt-2" role="alert">
-  {{Session::get('success')}}
-</div>
+  <div class="alert alert-success mt-2" role="alert">
+    {{Session::get('success')}}
+  </div>
 @endif
 <div class="col-md-9 pt-4 m-auto">
   <form class="" action="{{route('profile.update', [$user->id])}}" method="post">

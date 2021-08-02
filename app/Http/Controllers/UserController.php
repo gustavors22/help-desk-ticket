@@ -78,8 +78,8 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $this->user->updatePassword($request->new_password, $request->new_password_confirm);
-        return redirect()->route('home')->with('Senha modificada com sucesso');
+        $update = $this->user->updatePassword($request->new_password, $request->new_password_confirm);
+        return !$update ? redirect()->back()->with('error', 'Senhas não coincidem') : redirect()->back()->with('success', 'Senha modificada com sucesso');
     }
 
     public function getUser($id)
