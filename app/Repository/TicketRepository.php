@@ -28,7 +28,7 @@ class TicketRepository
 
     public function getTicketById($id)
     {
-        return $this->ticket->find($id);
+       return dd($this->ticket->where('id', $id)->with('image')->get());
     }
 
     public function saveTicket($ticketData)

@@ -31,6 +31,11 @@ class Ticket extends Model
         return $this->hasMany(Solution::class);
     }
 
+    public function image()
+    {
+        return $this->hasMany(Image::class);
+    }
+
     public function getOwner($user_id)
     {
         return User::find($user_id);

@@ -175,6 +175,8 @@ return [
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
+    
+
     /*
     |--------------------------------------------------------------------------
     | URLs

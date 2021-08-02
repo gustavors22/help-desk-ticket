@@ -2,12 +2,12 @@
 @section('title', 'Ticket')
 @section('content')
 @if($errors->any())
-    <div class="alert alert-danger mt-2" role="alert">
-          <strong>Não autorizado</strong>
-    </div>
+<div class="alert alert-danger mt-2" role="alert">
+  <strong>Não autorizado</strong>
+</div>
 @endif
 <div class="col-md-9 pt-4 m-auto">
-  <form class="" action="{{route('support.update', [$ticket->id])}}" method="post">
+  <form class="form-wrapper-scroll-y my-custom-scrollbar" action="{{route('support.update', [$ticket->id])}}" method="post" enctype="multipart/form-data">
     @csrf()
     <div class="form-row">
       <div class="form-group col-md-4">
@@ -61,23 +61,29 @@
         <input type="datetime-local" class="form-control" id="solution_date" name="solution_date" value="">
       </div>
     </div>
-    
+
     <div class="form-row" id="support-data">
       <div class="form-group col-md-4">
-          <label for="inputName4">Nome do Suporte</label>
-          <input type="name" class="form-control" id="inputName4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->name : ''}}" disabled>
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputEmail4">Email do Suporte</label>
-          <input type="email" class="form-control" id="inputEmail4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->email: ''}}" disabled>
-        </div>
+        <label for="inputName4">Nome do Suporte</label>
+        <input type="name" class="form-control" id="inputName4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->name : ''}}" disabled>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Email do Suporte</label>
+        <input type="email" class="form-control" id="inputEmail4" value="{{$solution != null ? $solution->getOwnerSolution($solution->support_id)->email: ''}}" disabled>
+      </div>
     </div>
 
     <div class="form-row">
-      <button type="submit" class="btn btn-primary form-group" id="sup">Enviar</button>
-      <a href="{{route('home')}}">
-        <input type="button" class="btn btn-warning form-group" value="Voltar">
-      </a>
+      <img src="{{route($ticket->image->path)}}">
+    </div>
+
+    <div class="form-col">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="sup">Enviar</button>
+        <a href="{{route('home')}}">
+          <input type="button" class="btn btn-warning" value="Voltar">
+        </a>
+      </div>
     </div>
   </form>
 </div>
@@ -86,6 +92,17 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+  }
+
+  .form-wrapper-scroll-y {
+    display: block;
+  }
+</style>
 @stop
 
 @section('js')
@@ -97,7 +114,7 @@
     date.disabled = true;
   }
 
-  if('{{$ticket->status}}' != 'resolvido'){
+  if ('{{$ticket->status}}' != 'resolvido') {
     const supportData = document.querySelectorAll('#support-data')[0]
     supportData.hidden = true
   }

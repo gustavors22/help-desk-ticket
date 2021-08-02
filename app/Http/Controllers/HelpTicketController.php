@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\ModelHelpTicket;
 use App\Service\HelpTicketService;
+use App\Service\ImageService;
 use Illuminate\Http\Request;
 
 class HelpTicketController extends Controller
 {
     private $ticketService;
+    private $imageService;
 
-    function __construct(HelpTicketService $ticketService)
+    function __construct()
     {
-        $this->ticketService = $ticketService;
+        $this->ticketService = new HelpTicketService;
+        $this->imageService = new ImageService;
     }
 
     public function index()
@@ -32,10 +35,20 @@ class HelpTicketController extends Controller
             'title'         => $request->title,
             'user_message'  => $request->user_message
         ];
+        
+        $ticket = $this->ticketService->saveTicket($ticketData);
 
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $name = uniqid(date('HisYmd'));
+            $extension = $request->image->extension();
+            $file = "{$name}.{$extension}";
+            $path = public_path('images', $file);
+            $upload = $request->image->move($path, $file);
+            $this->imageService->save(['ticket_id' => $ticket['ticket_id'], 'path' => $upload]);
+         
+        }
 
-        $this->ticketService->saveTicket($ticketData);
-        return redirect()->route('home'); 
+        return redirect()->route('home')->with('success', 'Ticket criado com sucesso'); 
     }
 
     public function showTicketByCode($ticket_code)
