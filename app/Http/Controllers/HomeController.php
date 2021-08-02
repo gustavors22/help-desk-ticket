@@ -15,17 +15,17 @@ class HomeController extends Controller
 
     public function __construct(TicketRepository $ticket, UsersRepository $user)
     {
-        $this->ticket= $ticket;
+        $this->ticket = $ticket;
         $this->user = $user;
         $this->middleware('auth');
     }
 
     public function index()
     {
-        if(auth()->user()->type == 'support' || auth()->user()->type == 'admin'){
+        if (auth()->user()->type == 'support' || auth()->user()->type == 'admin') {
             $tickets = $this->ticket->getAllTickets();
             return view('home', compact('tickets'));
-        }else{
+        } else {
             $tickets = $this->ticket->getUserTickets(auth()->user()->id);
             return view('home', compact('tickets'));
         }

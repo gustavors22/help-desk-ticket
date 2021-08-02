@@ -19,6 +19,7 @@
         <input type="email" class="form-control" id="inputEmail4" value="{{$ticket[0]->getOwner($ticket[0]->user_id)->email}}" disabled>
       </div>
     </div>
+
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputMessage">Message</label>
@@ -73,6 +74,7 @@
       </div>
     </div>
 
+    @if(empty($ticket[0]['image'][0]) == false)
     <div class="form-col" id="see-image">
       <div class="form-group">
         <a href="#">Ver imagem</a>
@@ -86,6 +88,7 @@
         </a>
       </div>
     </div>
+    @endif
 
     <div class="form-col">
       <div class="form-group">

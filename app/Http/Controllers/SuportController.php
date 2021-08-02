@@ -31,7 +31,7 @@ class SuportController extends Controller
         $ticket = $this->supportService->getTicketById($id);
         $solution = $this->solution->getByTicketId($id) ?? null;
 
-        return view('ticketView', compact('ticket', 'solution'));
+        return view('ticketView', compact('ticket', 'solution',));
     }
 
     public function update(Request $request, $id)
