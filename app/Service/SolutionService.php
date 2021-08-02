@@ -21,4 +21,9 @@ class SolutionService
     {
         return $this->solution->getByTicketId($id);
     }
+
+    public function delete($id)
+    {
+        return $this->solution->delete($id);
+    }
 }

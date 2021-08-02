@@ -5,15 +5,20 @@ use App\Repository\ImageRepository;
 
 class ImageService
 {
-    private $Image;
+    private $image;
 
     function __construct()
     {
-        $this->Image = new ImageRepository;
+        $this->image = new ImageRepository;
     }
 
     public function save($data)
     {
-        return $this->Image->save($data);
+        return $this->image->save($data);
+    }
+
+    public function delete($ticket_id)
+    {
+        return $this->image->delete($ticket_id);
     }
 }

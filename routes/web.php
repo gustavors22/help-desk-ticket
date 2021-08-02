@@ -14,7 +14,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/support/ticket/{id}',  [SuportController::class, 'show'])->name('support.show')->middleware('auth');
 Route::post('/support/ticket/{id}', [SuportController::class, 'update'])->name('support.update')->middleware('auth');
-Route::post('/support/closeticket/{id}', [SuportController::class, 'destroy'])->name('support.closeticket')->middleware('auth');
+Route::post('/support/delete/ticket/{id}', [SuportController::class, 'destroy'])->name('support.deleteticket')->middleware('auth');
 Route::get('/support/closedtickets/', [SuportController::class, 'getClosedTicketsBySupport'])->name('support.yourclosedtickets')->middleware('auth');
 Route::get('/support/closedtickets/all', [SuportController::class, 'getAllClosedTickets'])->name('support.allclosedtickets')->middleware('auth');
 Route::get('/support/createuser', [UserController::class, 'createUserView'])->name('support.createuser')->middleware('auth');

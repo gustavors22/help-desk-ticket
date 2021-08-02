@@ -22,4 +22,9 @@ class SolutionRepository
     {
         return $this->solution->where('ticket_id', $ticket_id)->orderBy('id', 'desc')->first();
     }
+
+    public function delete($ticket_id)
+    {
+        return $this->solution->where('ticket_id', $ticket_id)->delete();
+    }
 }

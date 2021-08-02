@@ -6,15 +6,20 @@ use App\Models\Models\Image;
 
 class ImageRepository
 {
-    private $solution;
+    private $image;
 
     function __construct()
     {
-        $this->solution = new Image();
+        $this->image = new Image();
     }
 
     public function save($image)
     {
-        return $this->solution->create($image);
+        return $this->image->create($image);
+    }
+
+    public function delete($ticket_id)
+    {
+        return $this->image->where('ticket_id', $ticket_id)->delete();
     }
 }

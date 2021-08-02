@@ -1,19 +1,24 @@
 <?php
 
 namespace App\Repository;
+
 use App\Models\Models\Ticket;
+use App\Service\ImageService;
 use App\Service\SolutionService;
+use Exception;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class TicketRepository
 {
     private $ticket;
     private $solution;
+    private $image;
     
     function __construct()
     {
         $this->ticket = new Ticket;
         $this->solution = new SolutionService;
+        $this->image = new ImageService;
     }
     
     public function getAllTickets()
@@ -59,7 +64,16 @@ class TicketRepository
 
     public function deleteTicket($id)
     {
-        return $this->ticket->find($id)->delete();
+        try{
+            $this->image->delete($id);
+            $this->solution->delete($id);
+            $this->ticket->find($id)->delete();
+
+        }catch(Exception $exception){
+            return $exception->getMessage();
+        }
+
+        return true;
     }
 
     public function generateTicketCode()
