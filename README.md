@@ -1,6 +1,6 @@
 ## About This Project
 
-<img src='project-screenshot.png' width='1080px' heigth='435px'>
+<img src='https://raw.githubusercontent.com/gustavors22/help-desk-ticket/relationship/project-screenshot.PNG' width='1080px' heigth='435px'>
 This project is based on a system for managing support tickets.
 
 ##  Build With
