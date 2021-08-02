@@ -6,8 +6,6 @@
   <strong>Não autorizado</strong>
 </div>
 @endif
-
-
 <div class="col-md-9 pt-4 m-auto">
   <form class="form-wrapper-scroll-y my-custom-scrollbar" action="{{route('support.update', [$ticket[0]->id])}}" method="post" enctype="multipart/form-data">
     @csrf()
@@ -75,8 +73,18 @@
       </div>
     </div>
 
-    <div class="form-row">
-      <img class="img-fluid " src="{{url('storage' ,$ticket[0]['image'][0]->path)}}">
+    <div class="form-col" id="see-image">
+      <div class="form-group">
+        <a href="#">Ver imagem</a>
+      </div>
+    </div>
+
+    <div class="form-col" id='image' hidden>
+      <div class="form-group">
+        <a href="{{url('storage' ,$ticket[0]['image'][0]->path)}}">
+          <img class="img-fluid img-thumbnail" src="{{url('storage' ,$ticket[0]['image'][0]->path)}}" width="634" height="332">
+        </a>
+      </div>
     </div>
 
     <div class="form-col">
@@ -97,8 +105,7 @@
 <style>
   .my-custom-scrollbar {
     position: relative;
-    height: 690px;
-
+    height: 700px;
     overflow: auto;
   }
 
@@ -127,5 +134,10 @@
     document.querySelectorAll("#solution_date")[0].value = date.toISOString().replace('000Z', "000");
     console.log(date.toISOString().replace('000Z', "000"))
   }
+
+  const image = document.querySelectorAll('#image')[0];
+  const imageLink = document.querySelectorAll('#see-image')[0];
+
+  imageLink.addEventListener('click', () => setTimeout(() => image.hidden = image.hidden === true ? false : true, 300))
 </script>
 @stop
