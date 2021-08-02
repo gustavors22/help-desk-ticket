@@ -25,8 +25,7 @@ class HelpTicketService
     public function saveTicket($ticketData)
     {
         $ticketData['ticket_id'] = $this->generateTicketId();
-        $this->ticketRepository->saveTicket($ticketData);
-        return $ticketData;
+        return $this->ticketRepository->saveTicket($ticketData);
     }
 
     public function updateTicketByEmail($data, $email)

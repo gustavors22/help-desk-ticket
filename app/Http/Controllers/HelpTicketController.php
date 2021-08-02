@@ -42,10 +42,8 @@ class HelpTicketController extends Controller
             $name = uniqid(date('HisYmd'));
             $extension = $request->image->extension();
             $file = "{$name}.{$extension}";
-            $path = public_path('images', $file);
-            $upload = $request->image->move($path, $file);
-            $this->imageService->save(['ticket_id' => $ticket['ticket_id'], 'path' => $upload]);
-         
+            $upload = $request->image->storeAs('images', $file);
+            $this->imageService->save(['ticket_id' => $ticket->id, 'path' => $upload]);
         }
 
         return redirect()->route('home')->with('success', 'Ticket criado com sucesso'); 

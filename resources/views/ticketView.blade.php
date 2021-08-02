@@ -6,23 +6,25 @@
   <strong>Não autorizado</strong>
 </div>
 @endif
+
+
 <div class="col-md-9 pt-4 m-auto">
-  <form class="form-wrapper-scroll-y my-custom-scrollbar" action="{{route('support.update', [$ticket->id])}}" method="post" enctype="multipart/form-data">
+  <form class="form-wrapper-scroll-y my-custom-scrollbar" action="{{route('support.update', [$ticket[0]->id])}}" method="post" enctype="multipart/form-data">
     @csrf()
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputName4">Nome</label>
-        <input type="name" class="form-control" id="inputName4" value="{{$ticket->getOwner($ticket->user_id)->name}}" disabled>
+        <input type="name" class="form-control" id="inputName4" value="{{$ticket[0]->getOwner($ticket[0]->user_id)->name}}" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" value="{{$ticket->getOwner($ticket->user_id)->email}}" disabled>
+        <input type="email" class="form-control" id="inputEmail4" value="{{$ticket[0]->getOwner($ticket[0]->user_id)->email}}" disabled>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputMessage">Message</label>
-        <textarea type="textArea" class="form-control" id="inputMessage" cols="4" rows="4" disabled>{{$ticket->user_message}}</textarea>
+        <textarea type="textArea" class="form-control" id="inputMessage" cols="4" rows="4" disabled>{{$ticket[0]->user_message}}</textarea>
       </div>
       <div class="form-group col-md-4">
         <label for="inputMessage">Solução</label>
@@ -34,7 +36,7 @@
       <div class="form-group col-md-4">
         <label for="inputStatus">Status</label>
         <select name="status" class="form-control" id="sup">
-          <option selected>{{$ticket->status}}</option>
+          <option selected>{{$ticket[0]->status}}</option>
           <option>analise</option>
           <option>resolvendo</option>
           <option>resolvido</option>
@@ -43,7 +45,7 @@
       <div class="form-group col-md-4">
         <label for="exampleFormControlTextarea1">Prioridade</label>
         <select name="priority" class="form-control" id="sup">
-          <option selected>{{$ticket->priority}}</option>
+          <option selected>{{$ticket[0]->priority}}</option>
           <option>Alta</option>
           <option>Media</option>
           <option>Baixa</option>
@@ -54,7 +56,7 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="CreatedAt">Data de Criação</label>
-        <input type="datetime" class="form-control" id="CreatedAt" value="{{$ticket->created_at}}" disabled>
+        <input type="datetime" class="form-control" id="CreatedAt" value="{{$ticket[0]->created_at}}" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="SolutionDate">Data de Solução</label>
@@ -74,7 +76,7 @@
     </div>
 
     <div class="form-row">
-      <img src="{{route($ticket->image->path)}}">
+      <img class="img-fluid " src="{{url('storage' ,$ticket[0]['image'][0]->path)}}">
     </div>
 
     <div class="form-col">
@@ -95,7 +97,8 @@
 <style>
   .my-custom-scrollbar {
     position: relative;
-    height: 700px;
+    height: 690px;
+
     overflow: auto;
   }
 
@@ -114,13 +117,13 @@
     date.disabled = true;
   }
 
-  if ('{{$ticket->status}}' != 'resolvido') {
+  if ('{{$ticket[0]->status}}' != 'resolvido') {
     const supportData = document.querySelectorAll('#support-data')[0]
     supportData.hidden = true
   }
 
-  if ('{{$ticket->solution_date}}' != '') {
-    const date = new Date("{{$ticket->changeDatetoUTC($ticket->solution_date)}}");
+  if ('{{$ticket[0]->solution_date}}' != '') {
+    const date = new Date("{{$ticket[0]->changeDatetoUTC($ticket[0]->solution_date)}}");
     document.querySelectorAll("#solution_date")[0].value = date.toISOString().replace('000Z', "000");
     console.log(date.toISOString().replace('000Z', "000"))
   }

@@ -10,8 +10,8 @@ class Images extends Migration
     {
         Schema::create('images', function (Blueprint $table){
             $table->id();
-            $table->string('ticket_id');
-            $table->foreign('ticket_id')->references('ticket_id')->on('tickets');
+            $table->unsignedBigInteger('ticket_id');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
             $table->text('path');
             $table->timestamps();
         });
