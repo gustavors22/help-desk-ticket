@@ -13,8 +13,8 @@ This project is based on a system for managing support tickets.
 
 #### Cloning the project
 ```shell
-git clone -b relationship https://github.com/gustavors22/help-desk-ticket.git 
-cd help-desk-ticket-adminlte
+git clone -b project https://github.com/gustavors22/help-desk-ticket.git 
+cd help-desk-ticket-project
 ```
 #### Running the project
 ```shell
